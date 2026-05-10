@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Pacifico:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+ <script src='https://kit.fontawesome.com/9603c04a31.js' crossorigin='anonymous'></script>
+<title>Login - Fancy Surprise Planner</title>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#f7bad9",
+        "background-light": "#f8f6f7",
+        "background-dark": "#211119",
+      },
+      fontFamily: {
+        display: ["Inter"],
+        heading: ["Pacifico"],
+      },
+      borderRadius: {
+        DEFAULT: "0.5rem",
+        lg: "1rem",
+        xl: "1.5rem",
+        full: "9999px",
+      },
+    },
+  },
+};
+</script>
+<style>
+#mobile-menu {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+#mobile-menu.open {
+  transform: translateX(0);
+}
+html {
+  scroll-behavior: smooth;
+}
+*{
+  transition: background-color .5s ease,color .5s ease;  
+}
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-black dark:text-white">
+<div class="flex flex-col min-h-screen">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-background-light dark:bg-background-dark border-b border-primary/20 dark:border-primary/30">
+  <div class="max-w-7xl mx-auto w-full flex items-center justify-between px-6 md:px-10 py-4 relative">
+    <!-- Logo + Text --> 
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <i class="fa-solid fa-gift text-primary" style="scale: 1.4;"></i>
+      <h1 class="font-heading text-lg sm:text-xl font-bold">Fancy Surprise Planner</h1>
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium flex-1 justify-center">
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <button class="flex items-center justify-center rounded-full h-10 w-10 bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" onclick="toggleTheme()">
+        <span class="material-symbols-outlined dark:hidden">light_mode</span>
+        <span class="material-symbols-outlined hidden dark:inline">dark_mode</span>
+      </button>
+      <button class="lg:hidden flex items-center justify-center rounded-full h-10 w-10 border border-primary/20 dark:border-primary/30 text-black dark:text-white" id="hamburger-button">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" style="transform: translateX(100%); transition: transform 0.3s ease-in-out;" class="fixed top-0 right-0 h-full w-64 bg-background-light dark:bg-background-dark shadow-lg p-6 z-50">
+    <button class="absolute top-4 right-4 text-black dark:text-white" id="close-button">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <nav class="flex flex-col gap-6 mt-12 text-lg font-medium">
+    </nav>
+  </div>
+</header>
+
+<script>
+const hamburgerButton = document.getElementById('hamburger-button');
+const closeButton = document.getElementById('close-button');
+const mobileMenu = document.getElementById('mobile-menu');
+
+hamburgerButton.addEventListener('click', () => {
+  mobileMenu.style.transform = "translateX(0)";
+  document.body.style.overflow = "hidden";
+});
+
+closeButton.addEventListener('click', () => {
+  mobileMenu.style.transform = "translateX(100%)";
+  document.body.style.overflow = "auto";
+});
+
+mobileMenu.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) {
+    mobileMenu.style.transform = "translateX(100%)";
+    document.body.style.overflow = "auto";
+  }
+});
+document.documentElement.classList.toggle('dark');
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark');
+}
+</script>
+
+<main class="flex-1 flex items-center justify-center px-6 sm:px-8 lg:px-10 py-20">
+  <div class="max-w-md w-full bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 rounded-xl shadow-lg p-8">
+    <h2 class="font-heading text-2xl font-bold text-center mb-8">Login</h2>
+    <form action="#" method="POST" class="space-y-6">
+      <!-- Email -->
+      <div>
+        <label for="email" class="block text-sm font-medium leading-6 mb-2">Email</label>
+        <input type="email" id="email" name="email" placeholder="Your Email"
+          class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-3 px-4 text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+      </div>
+
+      <!-- Password -->
+      <div>
+        <label for="password" class="block text-sm font-medium leading-6 mb-2">Password</label>
+        <input type="password" id="password" name="password" placeholder="Your Password"
+          class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-3 px-4 text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+      </div>
+
+      <!-- Button -->
+      <div class="flex justify-center">
+        <button type="submit"
+          class="rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
+          Login
+        </button>
+      </div>
+    </form>
+    <p class="text-center mt-6 text-sm text-black/60 dark:text-white/60">
+      Don't have an account? <a href="sign_up.html" class="text-primary hover:underline">Sign up</a>
+    </p>
+  </div>
+</main>
+
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 dark:border-primary/30 py-10 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-6 text-center text-black/70 dark:text-white/70">
+    <div class="flex items-center gap-6">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-12 h-12 flex items-center justify-center  p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-tiktok text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-instagram text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+      <!-- Telegram -->
+      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-telegram text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+    </div>
+
+    <p class="text-sm tracking-wide">© 2025 <span class="font-semibold text-primary">Fancy Surprise Planner</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+</div>
+</body>
+</html>

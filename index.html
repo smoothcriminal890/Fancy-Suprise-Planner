@@ -46,8 +46,34 @@ html {
 *{
   transition: background-color .5s ease,color .5s ease;  
 }
-
-
+a.login, a.sign_up {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+    font-weight: 700;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(247 186 217 / var(--tw-bg-opacity, 1));
+    border-radius: 9999px;
+    cursor: pointer;
+        box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+        border-radius: 9999px;    transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
 </style>
 </head>
 <body class="font-display bg-background-light dark:bg-background-dark text-black dark:text-white">
@@ -82,7 +108,8 @@ html {
 
     <!-- Actions -->
     <div class="flex items-center gap-3 flex-shrink-0">
-      <button class="hidden sm:inline-flex rounded-full bg-primary text-white px-6 py-2 font-bold shadow hover:opacity-90 transition">Book Now</button>
+      <a class="login" href="login.html">Log in</a>
+      <a class="sign_up" href="sign_up.html">Sign up</a>
       <button class="flex items-center justify-center rounded-full h-10 w-10 bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" onclick="toggleTheme()">
         <span class="material-symbols-outlined dark:hidden">light_mode</span>
         <span class="material-symbols-outlined hidden dark:inline">dark_mode</span>
@@ -104,7 +131,7 @@ html {
     <a href="#gallery" class="hover:text-primary transition-colors">Gallery</a>
     <a href="#about" class="hover:text-primary transition-colors">About</a>
     <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
-    <a href="tel:+251955820654" class="mt-4 rounded-full bg-primary text-white text-center py-3 font-semibold">Book Now</a>
+    <a href="login.html">Sign up</a>
      <div class="flex items-center gap-3">
       <!-- TikTok -->
       <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-12 h-12 flex items-center justify-center  p-3  transition-all duration-500 transform hover:-translate-y-1">
@@ -178,9 +205,6 @@ function toggleTheme() {
     <div class="fade-stagger mt-6 flex justify-center gap-4 flex-wrap" style="--delay: 0.44s">
       <a href="#packages" class="rounded-full bg-primary text-white px-6 py-2 text-sm sm:text-base font-semibold shadow-md hover:-translate-y-1 transition-all duration-500">
         Explore Packages
-      </a>
-      <a href="https://www.tiktok.com/@fancy_surprise_planner" onmouseover="moveabit(this)" onmouseleave="backabit(this)" target="_blank" class="rounded-full border border-primary text-primary px-6 py-2 text-sm sm:text-base font-semibold  transition-all duration-500">
-        TikTok <span class="ml-1"><i class="fa-solid fa-arrow-right transition-all"></i></span>
       </a>
     </div>
   </div>
@@ -541,50 +565,6 @@ function fill(elem){
 </div>
 
 <!-- Reuse the same fade animation styles and script -->
-
-<!-- Contact Section -->
-<!-- Contact Section -->
-<section id="contact" class="mx-auto w-full max-w-2xl px-6 sm:px-8 lg:px-0 py-20 text-center">
-  <h2 class="font-heading text-3xl md:text-4xl font-bold mb-12 fade-up">Contact Us</h2>
-
-  <form action="#" method="POST" class="space-y-8 mx-auto fade-up">
-    <!-- Name -->
-    <div class="fade-up delay-100">
-      <label for="name" class="block text-sm font-medium leading-6 mb-2">Name</label>
-      <input type="text" id="name" name="name" placeholder="Your Name"
-        class="w-full sm:w-11/12 md:w-10/12 lg:w-full mx-auto rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-4 px-5 text-base text-black dark:text-white shadow-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-    </div>
-
-    <!-- Email -->
-    <div class="fade-up delay-200">
-      <label for="email" class="block text-sm font-medium leading-6 mb-2">Email</label>
-      <input type="email" id="email" name="email" placeholder="Your Email"
-        class="w-full sm:w-11/12 md:w-10/12 lg:w-full mx-auto rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-4 px-5 text-base text-black dark:text-white shadow-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-    </div>
-
-    <!-- Phone -->
-    <div class="fade-up delay-300">
-      <label for="phone" class="block text-sm font-medium leading-6 mb-2">Phone</label>
-      <input type="tel" id="phone" name="phone" placeholder="Your Phone"
-        class="w-full sm:w-11/12 md:w-10/12 lg:w-full mx-auto rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-4 px-5 text-base text-black dark:text-white shadow-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
-    </div>
-
-    <!-- Message -->
-    <div class="fade-up delay-400">
-      <label for="message" class="block text-sm font-medium leading-6 mb-2">Message</label>
-      <textarea id="message" name="message" rows="5" placeholder="Your Message"
-        class="w-full sm:w-11/12 md:w-10/12 lg:w-full mx-auto rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-4 px-5 text-base text-black dark:text-white shadow-md focus:ring-2 focus:ring-primary focus:border-transparent transition-all"></textarea>
-    </div>
-
-    <!-- Button -->
-    <div class="fade-up delay-500 flex justify-center">
-      <button type="submit"
-        class="rounded-full bg-primary px-10 py-3.5 text-base font-semibold text-white shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
-        Send Message
-      </button>
-    </div>
-  </form>
-</section>
 
 <!-- Fade Animations -->
 <style>

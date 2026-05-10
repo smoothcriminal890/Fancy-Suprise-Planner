@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Pacifico:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src='https://kit.fontawesome.com/9603c04a31.js' crossorigin='anonymous'></script>
+<title>Sign Up - Fancy Surprise Planner</title>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#f7bad9",
+        "background-light": "#f8f6f7",
+        "background-dark": "#211119",
+      },
+      fontFamily: {
+        display: ["Inter"],
+        heading: ["Pacifico"],
+      },
+      borderRadius: {
+        DEFAULT: "0.5rem",
+        lg: "1rem",
+        xl: "1.5rem",
+        full: "9999px",
+      },
+    },
+  },
+};
+</script>
+<style>
+html {
+  scroll-behavior: smooth;
+}
+*{
+  transition: background-color .5s ease,color .5s ease;
+}
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-black dark:text-white">
+<div class="flex flex-col min-h-screen">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-background-light dark:bg-background-dark border-b border-primary/20 dark:border-primary/30">
+  <div class="max-w-7xl mx-auto w-full flex items-center justify-between px-6 md:px-10 py-4 relative">
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <i class="fa-solid fa-gift text-primary" style="scale: 1.4;"></i>
+      <h1 class="font-heading text-lg sm:text-xl font-bold">Fancy Surprise Planner</h1>
+    </div>
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <button class="flex items-center justify-center rounded-full h-10 w-10 bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" onclick="toggleTheme()">
+        <span class="material-symbols-outlined dark:hidden">light_mode</span>
+        <span class="material-symbols-outlined hidden dark:inline">dark_mode</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main class="flex-1 flex items-center justify-center px-6 sm:px-8 lg:px-10 py-24 pt-32">
+  <div class="w-full max-w-3xl grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr] gap-10 items-center">
+    <section class="bg-gradient-to-br from-pink-50 to-pink-100 dark:from-[#2b1b27] dark:to-[#3a212f] rounded-[2rem] p-10 shadow-2xl overflow-hidden relative">
+      <div class="absolute inset-0 bg-primary/10 blur-3xl opacity-40"></div>
+      <div class="relative z-10 space-y-6">
+        <p class="text-sm uppercase text-primary tracking-[0.35em] font-semibold">Create your account</p>
+        <h1 class="font-heading text-4xl sm:text-5xl font-bold leading-tight">Start planning your next surprise</h1>
+        <p class="text-black/75 dark:text-white/75 max-w-xl">Join Fancy Surprise Planner and unlock easy booking, personalized event support, and beautiful surprise design tailored to your celebration.</p>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <div class="rounded-3xl border border-primary/15 bg-white/80 dark:bg-white/5 p-5 shadow-sm">
+            <p class="text-3xl font-bold text-primary">5+</p>
+            <p class="text-sm text-black/70 dark:text-white/70 mt-2">Years of experience</p>
+          </div>
+          <div class="rounded-3xl border border-primary/15 bg-white/80 dark:bg-white/5 p-5 shadow-sm">
+            <p class="text-3xl font-bold text-primary">100+</p>
+            <p class="text-sm text-black/70 dark:text-white/70 mt-2">Happy surprise clients</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 rounded-[2rem] p-8 shadow-lg backdrop-blur-sm">
+      <h2 class="font-heading text-3xl font-bold text-center mb-8">Sign Up</h2>
+      <form action="#" method="POST" class="space-y-6">
+        <div>
+          <label for="name" class="block text-sm font-medium leading-6 mb-2">Full Name</label>
+          <input type="text" id="name" name="name" placeholder="Your Full Name"
+            class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-3 px-4 text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+        </div>
+
+        <div>
+          <label for="email" class="block text-sm font-medium leading-6 mb-2">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your Email"
+            class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-3 px-4 text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+        </div>
+
+        <div>
+          <label for="password" class="block text-sm font-medium leading-6 mb-2">Password</label>
+          <input type="password" id="password" name="password" placeholder="Create a Password"
+            class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-3 px-4 text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+        </div>
+
+        <div>
+          <label for="confirm-password" class="block text-sm font-medium leading-6 mb-2">Confirm Password</label>
+          <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
+            class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-3 px-4 text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+        </div>
+
+        <div>
+          <label for="phone" class="block text-sm font-medium leading-6 mb-2">Phone Number</label>
+          <input type="tel" id="phone" name="phone" placeholder="Optional"
+            class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-3 px-4 text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all">
+        </div>
+
+        <button type="submit"
+          class="w-full rounded-full bg-primary px-8 py-3 text-base font-semibold text-white shadow-md hover:opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary transition-all">
+          Create account
+        </button>
+      </form>
+      <p class="text-center mt-6 text-sm text-black/60 dark:text-white/60">Already have an account? <a href="login.html" class="text-primary hover:underline">Login</a></p>
+    </section>
+  </div>
+</main>
+
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 dark:border-primary/30 py-10 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-6 text-center text-black/70 dark:text-white/70">
+    <div class="flex items-center gap-6">
+      <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-tiktok text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-instagram text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-telegram text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+    </div>
+    <p class="text-sm tracking-wide">© 2025 <span class="font-semibold text-primary">Fancy Surprise Planner</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+document.documentElement.classList.toggle('dark');
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark');
+}
+</script>
+</div>
+</body>
+</html>
