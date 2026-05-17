@@ -145,8 +145,10 @@ document.documentElement.classList.toggle('dark');
 function toggleTheme() {
   document.documentElement.classList.toggle('dark');
 }
-// Client-side validation
-document.querySelector(form).addEventListener('submit', function(e){
+</script>
+<script>
+  // Client-side validation
+document.querySelector('form').addEventListener('submit', function(e){
   const password = document.getElementById('password').value;
   const confirmPassword = document.getElementById('confirm-password').value;
   if(password !== confirmPassword){
