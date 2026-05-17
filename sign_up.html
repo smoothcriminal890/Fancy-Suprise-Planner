@@ -82,7 +82,7 @@ html {
 
     <section class="bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 rounded-[2rem] p-8 shadow-lg backdrop-blur-sm">
       <h2 class="font-heading text-3xl font-bold text-center mb-8">Sign Up</h2>
-      <form action="#" method="POST" class="space-y-6">
+      <form action="save_info.php" method="POST" class="space-y-6">
         <div>
           <label for="name" class="block text-sm font-medium leading-6 mb-2">Full Name</label>
           <input type="text" id="name" name="name" placeholder="Your Full Name"
@@ -145,6 +145,15 @@ document.documentElement.classList.toggle('dark');
 function toggleTheme() {
   document.documentElement.classList.toggle('dark');
 }
+// Client-side validation
+document.querySelector(form).addEventListener('submit', function(e){
+  const password = document.getElementById('password').value;
+  const confirmPassword = document.getElementById('confirm-password').value;
+  if(password !== confirmPassword){
+    e.preventDefault();
+    alert('Passwords do not match!');
+  }
+})
 </script>
 </div>
 </body>
