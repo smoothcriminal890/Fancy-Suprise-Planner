@@ -703,8 +703,6 @@ function fill(elem){
 
 </div>
 
-<script>
-
-</script>
+<script src="logged_in.js"></script> //Displaying real user info at the bottom right corner of the page and logout functionality
 </body>
 </html>
