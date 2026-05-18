@@ -18,7 +18,7 @@
     if ($conn->query($sql) === TRUE) {
         echo "New record created successfully";
     //After saving user info, send an email.
-        $to = "nettanyonas@gmail.com"; //My email address
+        $to = "nettanyonas@gmail.com"; //Email addresses to receive the notification
         $subject = "New Sign-up Information";
         $message = "A new user has signed up to the Fancy Surprise Planner website with the following information:\n\nName: $name\nEmail: $email\nPhone: $phone";
         mail($to, $subject, $message);
