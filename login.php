@@ -17,7 +17,7 @@
     if ($result->num_rows > 0) {
         echo "Login successful!";
     } else {
-        echo "Invalid email or password.";
+        echo "<script>alert('Invalid email or password. Please try again.');</script>";
     }
     $conn->close();
 ?>
