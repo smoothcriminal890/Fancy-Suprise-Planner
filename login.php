@@ -16,8 +16,9 @@
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         echo "Login successful!";
-    } else {
-        echo "<script>alert('Invalid email or password. Please try again.');</script>";
+    } 
+    else {
+        echo "<script>alert('Invalid email or password. Please try again.'); window.location.href='login.html';</script>";
     }
     $conn->close();
 ?>
