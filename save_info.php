@@ -16,7 +16,8 @@
     $phone = $_POST['phone'];
     $sql = "INSERT INTO user_info (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')";
     if ($conn->query($sql) === TRUE) {
-        echo "New record created successfully";
+        echo "Account created successfully! Redirecting to login page...";
+        echo "<script>setTimeout(function(){ window.location.href = 'login.html'; }, 3000);</script>";
         if(is_null($phone)==true){
             $phone = "N/A";
         }

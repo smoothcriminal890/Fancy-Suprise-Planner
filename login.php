@@ -15,7 +15,7 @@
     $sql = "SELECT * FROM user_info WHERE email='$email' AND password='$password'";
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
-        echo "Login successful!";
+        echo "<script>alert('Login successful! Redirecting to dashboard...'); window.location.href='logged_in.html';</script>";
     } 
     else {
         echo "<script>alert('Invalid email or password. Please try again.'); window.location.href='login.html';</script>";
