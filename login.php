@@ -19,7 +19,7 @@ session_start();
         $row = $result->fetch_assoc();
         $_SESSION['name'] = $row['name'];
         $_SESSION['email'] = $row['email'];
-        echo "<script>alert('Login successful! Redirecting to dashboard...'); window.location.href='logged_in.html';</script>";
+        echo "<script>window.location.href='logged_in.html';</script>";
     } 
     else {
         echo "<script>alert('Invalid email or password. Please try again.'); window.location.href='login.html';</script>";
