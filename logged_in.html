@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Pacifico:wght@400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+ <script src='https://kit.fontawesome.com/9603c04a31.js' crossorigin='anonymous'></script>
+<title>Fancy Surprise Planner</title>
+<script>
+tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      colors: {
+        primary: "#f7bad9",
+        "background-light": "#f8f6f7",
+        "background-dark": "#211119",
+      },
+      fontFamily: {
+        display: ["Inter"],
+        heading: ["Pacifico"],
+      },
+      borderRadius: {
+        DEFAULT: "0.5rem",
+        lg: "1rem",
+        xl: "1.5rem",
+        full: "9999px",
+      },
+    },
+  },
+};
+</script>
+<style>
+#mobile-menu {
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+}
+#mobile-menu.open {
+  transform: translateX(0);
+}
+html {
+  scroll-behavior: smooth;
+}
+*{
+  transition: background-color .5s ease,color .5s ease;  
+}
+a.login, a.sign_up {
+  --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+    --tw-text-opacity: 1;
+    color: rgb(255 255 255 / var(--tw-text-opacity, 1));
+    font-weight: 700;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    --tw-bg-opacity: 1;
+    background-color: rgb(247 186 217 / var(--tw-bg-opacity, 1));
+    border-radius: 9999px;
+    cursor: pointer;
+        box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: #e5e7eb;
+        border-radius: 9999px;    transition-property: color, background-color, border-color, fill, stroke, opacity, box-shadow, transform, filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter;
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform, filter, backdrop-filter, -webkit-text-decoration-color, -webkit-backdrop-filter;
+    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+    transition-duration: 150ms;
+    --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
+    box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+        padding-left: 1.5rem;
+    padding-right: 1.5rem;
+}
+a.login:hover, a.sign_up:hover {
+  color: pink;
+  background-color: white;
+}
+.user-menu-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: white;
+  dark: rgb(33 17 25);
+  border: 1px solid #e5e7eb;
+  border-radius: 0.5rem;
+  min-width: 200px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  margin-top: 0.5rem;
+}
+.user-menu-dropdown.open {
+  display: block;
+}
+</style>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark text-black dark:text-white">
+<div class="flex flex-col min-h-screen">
+
+<header class="fixed top-0 left-0 w-full z-50 bg-background-light dark:bg-background-dark border-b border-primary/20 dark:border-primary/30">
+  <div class="max-w-7xl mx-auto w-full flex items-center justify-between px-6 md:px-10 py-4 relative">
+    <!-- Logo + Text --> 
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <i class="fa-solid fa-gift text-primary" style="scale: 1.4;"></i>
+      <h1 class="font-heading text-lg sm:text-xl font-bold">Fancy Surprise Planner</h1>
+    </div>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium flex-1 justify-center">
+      <a href="#hero" class="group relative px-1 py-1 hover:text-primary transition-colors">
+        Home <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#packages" class="group relative px-1 py-1 hover:text-primary transition-colors">
+        Packages <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#gallery" class="group relative px-1 py-1 hover:text-primary transition-colors">
+        Gallery <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+      <a href="#about" class="group relative px-1 py-1 hover:text-primary transition-colors">
+        About <span class="absolute left-0 -bottom-1 w-0 h-0.5 bg-primary transition-all group-hover:w-full"></span>
+      </a>
+    </nav>
+
+    <!-- Actions -->
+    <div class="flex items-center gap-3 flex-shrink-0">
+      <!-- User Menu (Desktop) -->
+      <div class="hidden lg:flex items-center gap-3 relative">
+        <button id="user-menu-button" class="flex items-center gap-2 px-4 py-2 rounded-full border border-primary/20 dark:border-primary/30 hover:bg-primary/10 transition-colors" onclick="toggleUserMenu()">
+          <span class="material-symbols-outlined">account_circle</span>
+          <div class="flex flex-col items-start text-xs">
+            <span id="user-name" class="font-semibold">User</span>
+            <span id="user-email" class="text-black/60 dark:text-white/60">user@email.com</span>
+          </div>
+        </button>
+        <div id="user-menu-dropdown" class="user-menu-dropdown bg-background-light dark:bg-background-dark">
+          <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-primary/10 transition-colors text-red-500 hover:text-red-600 font-semibold rounded-b">
+            <span class="material-symbols-outlined mr-2" style="font-size: 18px; vertical-align: middle;">logout</span>
+            Log Out
+          </button>
+        </div>
+      </div>
+
+      <button class="flex items-center justify-center rounded-full h-10 w-10 bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" onclick="toggleTheme()">
+        <span class="material-symbols-outlined dark:hidden">light_mode</span>
+        <span class="material-symbols-outlined hidden dark:inline">dark_mode</span>
+      </button>
+      <button class="lg:hidden flex items-center justify-center rounded-full h-10 w-10 border border-primary/20 dark:border-primary/30 text-black dark:text-white" id="hamburger-button">
+        <span class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" style="transform: translateX(100%); transition: transform 0.3s ease-in-out;" class="fixed top-0 right-0 h-full w-64 bg-background-light dark:bg-background-dark shadow-lg p-6 z-50">
+    <button class="absolute top-4 right-4 text-black dark:text-white" id="close-button">
+      <span class="material-symbols-outlined">close</span>
+    </button>
+    <nav class="flex flex-col gap-6 mt-12 text-lg font-medium">
+      <a href="#hero" class="hover:text-primary transition-colors">Home</a>
+      <a href="#packages" class="hover:text-primary transition-colors">Packages</a>
+      <a href="#gallery" class="hover:text-primary transition-colors">Gallery</a>
+      <a href="#about" class="hover:text-primary transition-colors">About</a>
+      <button onclick="logout()" class="text-left text-red-500 hover:text-red-600 font-semibold transition-colors">
+        <span class="material-symbols-outlined mr-2" style="font-size: 18px; vertical-align: middle;">logout</span>
+        Log Out
+      </button>
+      <div class="flex items-center gap-3">
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-12 h-12 flex items-center justify-center  p-3  transition-all duration-500 transform hover:-translate-y-1">
+          <i class="fa-brands fa-tiktok text-xl hover:text-primary transition-colors duration-500"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3  transition-all duration-500 transform hover:-translate-y-1">
+          <i class="fa-brands fa-instagram text-xl hover:text-primary transition-colors duration-500"></i>
+        </a>
+        <!-- Telegram -->
+        <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 transition-all duration-500 transform hover:-translate-y-1">
+          <i class="fa-brands fa-telegram text-xl hover:text-primary transition-colors duration-500"></i>
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+const hamburgerButton = document.getElementById('hamburger-button');
+const closeButton = document.getElementById('close-button');
+const mobileMenu = document.getElementById('mobile-menu');
+const userMenuButton = document.getElementById('user-menu-button');
+const userMenuDropdown = document.getElementById('user-menu-dropdown');
+
+hamburgerButton.addEventListener('click', () => {
+  mobileMenu.style.transform = "translateX(0)";
+  document.body.style.overflow = "hidden";
+});
+
+closeButton.addEventListener('click', () => {
+  mobileMenu.style.transform = "translateX(100%)";
+  document.body.style.overflow = "auto";
+});
+
+mobileMenu.addEventListener('click', (e) => {
+  if (e.target === mobileMenu) {
+    mobileMenu.style.transform = "translateX(100%)";
+    document.body.style.overflow = "auto";
+  }
+});
+
+// User Menu Toggle
+function toggleUserMenu() {
+  userMenuDropdown.classList.toggle('open');
+}
+
+// Close menu when clicking outside
+document.addEventListener('click', (e) => {
+  if (!userMenuButton.contains(e.target) && !userMenuDropdown.contains(e.target)) {
+    userMenuDropdown.classList.remove('open');
+  }
+});
+
+// Load user info from session/localStorage
+document.addEventListener('DOMContentLoaded', () => {
+  loadUserInfo();
+});
+
+function loadUserInfo() {
+  // Try to get user info from session storage first, then localStorage
+  const userName = sessionStorage.getItem('userName') || localStorage.getItem('userName') || 'User';
+  const userEmail = sessionStorage.getItem('userEmail') || localStorage.getItem('userEmail') || 'user@email.com';
+  
+  document.getElementById('user-name').textContent = userName;
+  document.getElementById('user-email').textContent = userEmail;
+}
+
+function logout() {
+  // Clear session/localStorage
+  sessionStorage.removeItem('userName');
+  sessionStorage.removeItem('userEmail');
+  sessionStorage.removeItem('userId');
+  localStorage.removeItem('userName');
+  localStorage.removeItem('userEmail');
+  localStorage.removeItem('userId');
+  
+  // Redirect to login page
+  window.location.href = 'login.html';
+}
+
+document.documentElement.classList.toggle('dark');
+function toggleTheme() {
+  document.documentElement.classList.toggle('dark');
+}
+</script>
+
+
+ 
+<!-- Luxury Hero — Step-by-step stagger + glow -->
+<section id="hero" style="padding-top: 80px;" class="relative flex items-center justify-center h-screen bg-gradient-to-br from-pink-50 to-pink-100 dark:from-[#2b1b27] dark:to-[#3a212f] px-6 sm:px-8 lg:px-10 text-center overflow-hidden">
+  <!-- soft glow / blur behind content -->
+  <div class="absolute inset-0 pointer-events-none -z-10 flex items-center justify-center">
+    <div id="hero-glow" class="w-[520px] h-[520px] rounded-full blur-3xl opacity-30 bg-primary/20"></div>
+  </div>
+
+  <div class="max-w-2xl mx-auto flex flex-col gap-4 px-4">
+    <!-- NOTE: DOM order keeps the slogan visually above the heading,
+         but delays below control the animation order so the heading appears first. -->
+ 
+    <!-- Main heading (animates first) -->
+    <h2 class="fade-stagger reveal-hero font-heading text-3xl sm:text-4xl md:text-5xl font-bold leading-tight text-black dark:text-white" style="--delay: 0s">
+      Every Surprise, <span class="text-primary">A Masterpiece</span>
+    </h2>
+
+    <!-- Paragraph -->
+    <p class="fade-stagger text-base sm:text-lg md:text-xl text-black/80 dark:text-white/80" style="--delay: 0.28s">
+      We craft beautiful, personalized moments — elegant setups, thoughtful details, and stress-free planning for an unforgettable experience.
+    </p>
+
+    <!-- Buttons (compact, don't stretch) -->
+    <div class="fade-stagger mt-6 flex justify-center gap-4 flex-wrap" style="--delay: 0.44s">
+      <a href="#packages" class="rounded-full bg-primary text-white px-6 py-2 text-sm sm:text-base font-semibold shadow-md hover:-translate-y-1 transition-all duration-500">
+        Explore Packages
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+/* Fade + slight upward motion + subtle scale */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px) scale(.996); }
+  to   { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+/* Base (hidden) state for staggered elements */
+.fade-stagger {
+  opacity: 0;
+  transform: translateY(24px) scale(.996);
+}
+
+/* When visible, play animation; per-element delay via --delay */
+.fade-stagger.visible {
+  animation: fadeUp 700ms cubic-bezier(.22,.9,.35,1) both;
+  animation-delay: var(--delay, 0s);
+}
+
+/* Glow behaviour: subtle by default, dims after heading animation for focus */
+#hero-glow {
+  transition: opacity 700ms ease, transform 700ms ease;
+  opacity: 0.30;
+  transform: scale(1.06);
+}
+#hero-glow.glow-done {
+  opacity: 0.07;
+  transform: scale(1);
+}
+
+/* Accessibility: prefer reduced motion -> disable animations */
+@media (prefers-reduced-motion: reduce) {
+  .fade-stagger { opacity: 1 !important; transform: none !important; animation: none !important; }
+  #hero-glow { opacity: 0.08 !important; transform: none !important; }
+}
+</style>
+
+<script>
+// Staggered reveal using Intersection Observer. Animates once.
+(function () {
+  const staggerEls = document.querySelectorAll('.fade-stagger');
+  const glow = document.getElementById('hero-glow');
+
+  // Respect reduced motion
+  if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    staggerEls.forEach(el => el.classList.add('visible'));
+    if (glow) glow.classList.add('glow-done');
+    return;
+  }
+
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      el.classList.add('visible');
+
+      // If this is the main heading, schedule the glow to dim slightly
+      if (el.classList.contains('reveal-hero') && glow) {
+        // Wait for heading animation to play a little, then dim glow
+        const delayMs = 750; // matches animation duration roughly
+        setTimeout(() => glow.classList.add('glow-done'), delayMs);
+      }
+
+      obs.unobserve(el); // reveal once
+    });
+  }, { threshold: 0.18 });
+
+  staggerEls.forEach(el => io.observe(el));
+})();
+function moveabit(elem){
+elem.querySelector("i").style.transform="translateX(3px)"
+}
+function backabit(elem){
+elem.querySelector("i").style.transform="translateX(0px)"
+}
+</script>
+
+<!-- Packages -->
+<section id="packages" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 text-center">
+  <h2 class="font-heading text-3xl sm:text-4xl font-bold mb-14 fade-stagger" style="--delay: 0s">Packages</h2>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10 place-items-center">
+    <!-- Silver -->
+    <div class="fade-stagger flex flex-col gap-6 border border-primary/20  rounded-2xl p-8 hover:border-primary transition-colors shadow-sm hover:shadow-md bg-white/60 dark:bg-white/5 backdrop-blur-sm tr transition-all duration-500" style="--delay: 0.1s">
+      <h3 class="font-heading text-2xl font-bold text-primary text-center">Silver Package</h3>
+      <p class="text-3xl font-bold text-center mt-2">15,000 Br</p>
+      <ul class="space-y-2 text-black/80 dark:text-white/80 text-left mx-auto w-fit">
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Bedroom & corridor decor</li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Floor decoration</li>
+      </ul>
+      <!-- <a href="#" class="text-center mt-auto rounded-full bg-primary/20 text-primary py-2 px-6 font-semibold hover:bg-primary hover:text-white transition-colors">Choose</a> -->
+    </div>
+
+    <!-- Platinum -->
+    <div class="fade-stagger flex flex-col gap-6 border-2 border-primary rounded-2xl p-8 relative shadow-md bg-white/70 dark:bg-white/10 backdrop-blur-sm" style="--delay: 0.2s">
+      <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-white px-3 py-1 rounded-full text-sm font-bold shadow-md">Most Popular</div>
+      <h3 class="font-heading text-2xl font-bold text-primary text-center">Platinum Package</h3>
+      <p class="text-3xl font-bold text-center mt-2">25,000 Br</p>
+      <ul class="space-y-2 text-black/80 dark:text-white/80 text-left mx-auto w-fit">
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Full decor & lighting (2 weeks)</li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Custom 2KG cake</li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Flower bouquet & floor decor</li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Priority booking</li>
+      </ul>
+      <!-- <a href="#" class="text-center mt-auto rounded-full bg-primary text-white py-2 px-6 font-semibold hover:opacity-90 transition-opacity">Choose</a> -->
+    </div>
+
+    <!-- Golden -->
+    <div class="fade-stagger flex flex-col gap-6 border border-primary/20 transition-all duration-500 rounded-2xl p-8 hover:border-primary transition-colors shadow-sm hover:shadow-md bg-white/60 dark:bg-white/5 backdrop-blur-sm" style="--delay: 0.3s">
+      <h3 class="font-heading text-2xl font-bold text-primary text-center">Golden Package</h3>
+      <p class="text-3xl font-bold text-center mt-2">20,000 Br</p>
+      <ul class="space-y-2 text-black/80 dark:text-white/80 text-left mx-auto w-fit">
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Bedroom & corridor decor</li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>2KG cake</li>
+        <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary">check_circle</span>Flower bouquet & floor decor</li>
+      </ul>
+      <!-- <a href="#" class="text-center mt-auto rounded-full bg-primary/20 text-primary py-2 px-6 font-semibold hover:bg-primary hover:text-white transition-colors">Choose</a> -->
+    </div>
+  </div>
+</section>
+
+<style>
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.fade-stagger {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+}
+.fade-stagger.visible {
+  animation: fadeUp 0.8s cubic-bezier(.22,.9,.35,1) both;
+  animation-delay: var(--delay, 0s);
+}
+</style>
+
+<script>
+// Fade + stagger scroll animations for packages
+(function () {
+  const els = document.querySelectorAll('.fade-stagger');
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  els.forEach(el => io.observe(el));
+})();
+</script>
+
+</main>
+<!-- Gallery -->
+<div id="gallery" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-16">
+  <h2 class="font-heading text-3xl font-bold text-center mb-12 fade-stagger" style="--delay: 0s">Gallery</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    <div class="overflow-hidden rounded-lg fade-stagger" style="--delay:0.1s">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGSyG042qt7f26yrstibSi1kD4RiEB4sOErGY8AWgQaap9Einky1CXQW_bm7r4QHyhEbOV8wtGL0OsXY2TP-GS-RLFLh5IEs0QRq0uXpGudBxG34k62ffIJYOJB6IX5p3j7diYRW9Jb_Y9uQC1aKH3GvByamj-XYbFmAD16yY_8tDjb9HBf4XBNU0ufoW4Yec2ooWyKbQIPEZyMa9uwjEIvILEBeHKoOLk6h0DeAaehyCbm2VewfRKxgyMBySYlHEV314DEHgxx0E" class="w-full h-full object-cover">
+    </div>
+    <div class="overflow-hidden rounded-lg fade-stagger" style="--delay:0.2s">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDR5PoLTIg5XLPaiHw_kB36V68DDY0otmLPo5XBNwDEP8YoKBdUrNzqI2HeEgDkLJ8fnBFRIqdppLxTwwqXtYwI-UAM0PJ0iKrDdgJrGduQIaI56D17Rmh1g-RMbtAIpDrUfhoZhnh6FhOauB1kgUBXyZkQSMeCnOj0b952itKNIprdNZYQee5mgONx24_TFsC4Fq8eJayu6702h3Lww2_BXTB6xUyyTBv8oLHXM5sM8VpYUj443qyfpomOIWzJm39LDbi2V7jBOK0" class="w-full h-full object-cover">
+    </div>
+    <div class="overflow-hidden rounded-lg fade-stagger" style="--delay:0.3s">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBrlVNBObPO9mu9U9A4GVDojve2o0Pl6KWlmtHCykP3jva-beGi9S3EGvh_HvlBnM46GFp2kRpvt33Hx_punHlr1qg21Nn8cdmEW_-qsPFWZZrQmdA66QflDlvs7h1G5jSvQeG_xw6wd6kA05pG_5cXjWd0_ysAMosas2my9OwHVzeyjs8X9_NXdGSZQjOZpSElMoOu1-yp16trrvJpMmxdnMoO0pc2bR6fnyF5-AlwcvNtxOo0V32BhletT4tYvsSN0KJqpaWvR6w" class="w-full h-full object-cover">
+    </div>
+    <div class="overflow-hidden rounded-lg fade-stagger" style="--delay:0.4s">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjFNSYSnIQ_9SIHbZB-Q3yFAsobxf1vD1zn7mTjQURFwNJWjM091qCstKaFqkMSRLWE581QiqMOh0D7XfR3l2AAgh-i8G7xxgocoUc0uIHCtHuUe1m9SIG4J2Z7TC0qGbHeOQFl7LFNl0XDEMHtruvG5TtMswPplZhSDQuJ8_c8EZhbTVH3aN5LfgAQtdKgb_IeOVbTXs2-HbeirGmrll077a0vi6Vx5HzSepwjr_BQuitbwKzt6vJ6l_M0hHjwAn-rSf5fws_6Cs" class="w-full h-full object-cover">
+    </div>
+    <div class="overflow-hidden rounded-lg fade-stagger" style="--delay:0.5s">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1iIZMtacA952xx0jZ_KiOSw-_70T5EBPMs-q7Re5JeblLZJTGbt1jQHpKSM36Ri4pqP_ykWE9z7ICsA-216sB-amzJxtH0y4ncYOI19do_I1mvyHVG3noAZdJA4X1fk0XOCZb3x2AYBUi2J69Nxs1SJfM9jcu8wASkaiTNHe-h6md5c9Xn_OV_DheWTiI0B3456xWPdgWzgnXxABx11t1yjLTWAcwyiBUXujyx8N1HK3Jnkzq9bIHVjsnmT_Z8Nw6q6r3fR6fZ7g" class="w-full h-full object-cover">
+    </div>
+    <div class="overflow-hidden rounded-lg fade-stagger" style="--delay:0.6s">
+      <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxnL60lk6cQR23vBgo7SVVdfWOkbXeNrFUYE5uBWZCSDs6J5gFREBvkNEuxoArl4hhXJj7BICZbTe8qZSI0C9Y5DVvkb0G1cc6Bf_5Gl0lwBax8z0tH59H_85pgZ_YPB0RWA7NK6BwyYGGONJuV-O5nDoWRe5_yPSF04odXa33J7HVaBL1mDMPICXMla6tMddo8O7W1I7F1AXU0vqKdoC_h-E0pZt64qOdPrPdj8VtoPp0t7Nl6hhhKrR1d8AsoGzH1ry0pxW9Ynk" class="w-full h-full object-cover">
+    </div>
+  </div>
+</div>
+<style>
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(40px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+.fade-stagger {
+  opacity: 0;
+  transform: translateY(40px) scale(0.98);
+}
+.fade-stagger.visible {
+  animation: fadeUp 0.8s cubic-bezier(.22,.9,.35,1) both;
+  animation-delay: var(--delay, 0s);
+}
+</style>
+
+<script>
+// Scroll fade + stagger for Gallery (same as Packages)
+(function () {
+  const els = document.querySelectorAll('.fade-stagger');
+  const io = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  els.forEach(el => io.observe(el));
+})();
+</script> 
+<!-- About & Why Choose Us -->
+<div id="about" class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+  <div class="text-center fade-stagger" style="--delay:0s">
+    <h2 class="font-heading text-3xl font-bold mb-4">About &amp; Why Choose Us</h2>
+    <p class="max-w-3xl mx-auto text-black/80 dark:text-white/80 leading-relaxed">
+      At Fancy Surprise Planner, we're all about creating moments that make people feel truly special. 
+      Based in Addis Ababa, our team designs thoughtful surprise packages and unique experiences — 
+      especially for new moms and other special occasions. From concept to final setup, we handle everything 
+      with care and creativity, ensuring every surprise is heartfelt, memorable, and full of joy.
+    </p>
+  </div>
+
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 mt-16 text-center">
+    <div class="flex flex-col items-center gap-3 fade-stagger" style="--delay:0.1s">
+      <span class="material-symbols-outlined text-4xl text-primary icon-animate">auto_awesome</span>
+      <h3 class="text-lg font-semibold">Creative Designs</h3>
+      <p class="text-sm text-black/60 dark:text-white/60 max-w-[250px]">Unique and innovative surprise concepts</p>
+    </div>
+    <div class="flex flex-col items-center gap-3 fade-stagger" style="--delay:0.2s">
+      <span class="material-symbols-outlined text-4xl text-primary icon-animate">favorite</span>
+      <h3 class="text-lg font-semibold">Personalized Touch</h3>
+      <p class="text-sm text-black/60 dark:text-white/60 max-w-[250px]">Tailored to your preferences and story</p>
+    </div>
+    <div class="flex flex-col items-center gap-3 fade-stagger" style="--delay:0.3s">
+      <span class="material-symbols-outlined text-4xl text-primary icon-animate">event_available</span>
+      <h3 class="text-lg font-semibold">Seamless Planning</h3>
+      <p class="text-sm text-black/60 dark:text-white/60 max-w-[250px]">Stress-free execution from start to finish</p>
+    </div>
+    <div class="flex flex-col items-center gap-3 fade-stagger" style="--delay:0.4s">
+      <span class="material-symbols-outlined text-4xl text-primary icon-animate" >groups</span>
+      <h3 class="text-lg font-semibold">Dedicated Team</h3> 
+      <p class="text-sm text-black/60 dark:text-white/60 max-w-[250px]">Passionate professionals committed to excellence</p>
+    </div>
+  </div>
+</div>
+
+<!-- Fade-up + Icon animation -->
+<style>
+.fade-stagger {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.fade-stagger.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.icon-animate {
+  transform: scale(0);
+  transition:  0.8s ease;
+}
+.fade-stagger.visible .icon-animate {
+  transform: scale(1);
+}
+</style>
+
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const element = entry.target;
+        setTimeout(() => element.classList.add("visible"), parseFloat(getComputedStyle(element).getPropertyValue("--delay")) * 1000);
+        observer.unobserve(element);
+      }
+    });
+  }, { threshold: 0.2 });
+
+  document.querySelectorAll(".fade-stagger").forEach(el => observer.observe(el));
+});
+function fill(elem){
+ elem.classList.toggle("text-primary") 
+}
+</script>
+
+<!-- Testimonials -->
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20">
+  <h2 class="font-heading text-3xl font-bold text-center mb-12 fade-stagger" style="--delay:0s">Testimonials</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    
+    <!-- Selamawit -->
+    <div class="flex flex-col gap-4 bg-background-light dark:bg-background-dark p-6 rounded-xl border border-primary/20 dark:border-primary/30 shadow-sm hover:shadow-lg transition-all fade-stagger" style="--delay:0.1s">
+      <div class="flex items-center gap-3">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-12 h-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCvcj-Gwc0Q4kkMBdjtMivcJWtI71MRsyQb1TvDf9aMjfOaVh5QUT2-YGVfg1Tzi_wysEYZgGMkeW-ygu4QlU366rnaik2gv-Ran_fcOMvKfjIB_uIUgz3waLZZEzcqiDR9V7Svwpu2ugFKHSmahutTdAowOfdxRtCmrLcUmcfBSaMWyBr8p6RooMkJzncBySpIArWiAP2Aa1zh3rnyndMG3RpAUvjm7liqd9_HFRw8WSZy7lnWd-X4ON2Ckb9Jm6ZyUMZi7_QkBCs");'></div>
+        <div class="flex-1">
+          <p class="font-bold">Selamawit</p>
+          <p class="text-sm text-black/60 dark:text-white/60">2 months ago</p>
+        </div>
+      </div>
+      <div class="flex gap-0.5 text-primary">
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+      </div>
+      <p class="text-black/80 dark:text-white/80 leading-relaxed">
+        Fancy Surprise Planner exceeded all my expectations! They created the most magical surprise proposal for my fiancée. The attention to detail and personalized touches were truly remarkable. Highly recommended!
+      </p>
+    </div>
+
+    <!-- Abebe -->
+    <div class="flex flex-col gap-4 bg-background-light dark:bg-background-dark p-6 rounded-xl border border-primary/20 dark:border-primary/30 shadow-sm hover:shadow-lg transition-all fade-stagger" style="--delay:0.2s">
+      <div class="flex items-center gap-3">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-12 h-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDOxJNFdslB85OrdftZEOTz_s-yqZtxmxqDpQ5x3jU9osEVaIaAgsVO21jN7KsCJv0FpflulmGA1c7rHEO2YOqX-uUVqh1KE520UW2mzhyailQbG9qNlLHINv9t-d2fEXze_Cr-UkexzvwtuniWdXTFaDagChLD-k_Jf8MYsq4IYdFkPeAY9-VoOGFB3w4GSgcBAKRWG8VOD_6nN7ODxv3mFAR25SVuqhrWi_lwmDSQsOvyr6Yxn8SGgCYns7HFIIQQGH_6PStUv8c");'></div>
+        <div class="flex-1">
+          <p class="font-bold">Abebe</p>
+          <p class="text-sm text-black/60 dark:text-white/60">3 months ago</p>
+        </div>
+      </div>
+      <div class="flex gap-0.5 text-primary">
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+      </div>
+      <p class="text-black/80 dark:text-white/80 leading-relaxed">
+        I was blown away by the surprise birthday party Fancy Surprise Planner organized for my wife. The decorations were stunning and the event flawless. Truly unforgettable!
+      </p>
+    </div>
+
+    <!-- Tigist -->
+    <div class="flex flex-col gap-4 bg-background-light dark:bg-background-dark p-6 rounded-xl border border-primary/20 dark:border-primary/30 shadow-sm hover:shadow-lg transition-all fade-stagger" style="--delay:0.3s">
+      <div class="flex items-center gap-3">
+        <div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full w-12 h-12" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAXo1LszSPTNF-CcdqgQ9rcnZAtN3I2KDOz5w36y6I1qmx4MvBR5Lm-WirplZ7pmt2fHKLphNaJIMBdBCS6kvWCW-hUkek8Upu9H02Ta9-6sSa6i1UH3Hxito8N0D6eRPXI7f-eqLBIXEaKZ77K2boToBXTixs07hKHggvO6znbINleQup-n7BV3-pHDWspiBBCc8LC7_Fv7I6iimGmT2gqSqIcMaZRpjk-WyHkyoehjW6zpvQq1PUCTYAcrN1AWeLZbwbsrLWOIZI");'></div>
+        <div class="flex-1">
+          <p class="font-bold">Tigist</p>
+          <p class="text-sm text-black/60 dark:text-white/60">5 months ago</p>
+        </div>
+      </div>
+      <div class="flex gap-0.5 text-primary">
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl">star</span>
+        <span class="material-symbols-outlined text-xl text-black/20 dark:text-white/20">star</span>
+      </div>
+      <p class="text-black/80 dark:text-white/80 leading-relaxed">
+        Fancy Surprise Planner did a great job with my anniversary celebration. The decor was beautiful, and the team handled everything smoothly despite small hiccups.
+      </p>
+    </div>
+
+  </div>
+</div>
+
+<!-- Reuse the same fade animation styles and script -->
+
+<!-- Fade Animations -->
+<style>
+  .fade-up {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+  }
+
+  .fade-up.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .delay-100 { transition-delay: 0.1s; }
+  .delay-200 { transition-delay: 0.2s; }
+  .delay-300 { transition-delay: 0.3s; }
+  .delay-400 { transition-delay: 0.4s; }
+  .delay-500 { transition-delay: 0.5s; }
+</style>
+
+<!-- Intersection Observer -->
+<script>
+  const fadeUps = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.classList.add('visible');
+    });
+  }, { threshold: 0.2 });
+  fadeUps.forEach(el => observer.observe(el));
+</script>
+
+<!-- Footer -->
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 dark:border-primary/30 py-10 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-6 text-center text-black/70 dark:text-white/70">
+    <div class="flex items-center gap-6">
+      <!-- TikTok -->
+      <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-12 h-12 flex items-center justify-center  p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-tiktok text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+
+      <!-- Instagram -->
+      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-instagram text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+      <!-- Telegram -->
+      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-telegram text-xl hover:text-primary transition-colors duration-500"></i>
+      </a>
+    </div>
+
+    <p class="text-sm tracking-wide">© 2025 <span class="font-semibold text-primary">Fancy Surprise Planner</span>. All rights reserved.</p>
+  </div>
+</footer>
+
+<!-- Font Awesome Icons -->
+<script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+
+
+</div>
+
+<script src="logged_in.js"></script> //Displaying real user info at the bottom right corner of the page and logout functionality
+</body>
+</html>
