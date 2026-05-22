@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Pacifico:wght@400&display=swap" rel="stylesheet">
+		<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
+		<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+		<script>
+			tailwind.config = {
+				darkMode: "class",
+				theme: { extend: { colors: { primary: "#f7bad9", "background-light": "#f8f6f7", "background-dark": "#211119" }, fontFamily: { display: ["Inter"], heading: ["Pacifico"] } } }
+			};
+		</script>
+		<title>Send Message — Fancy Surprise Planner</title>
+		<style>
+			body { transition: background-color .5s ease, color .5s ease; }
+			.card { border-radius: 1rem; }
+		</style>
+	</head>
+	<body class="font-display bg-background-light dark:bg-background-dark text-black dark:text-white">
+		<div class="max-w-4xl mx-auto px-6 py-16">
+			<header class="flex items-center justify-between mb-8">
+				<div class="flex items-center gap-3">
+					<i class="fa-solid fa-gift text-primary" style="scale:1.2"></i>
+					<h1 class="font-heading text-xl">Fancy Surprise Planner</h1>
+				</div>
+				<a href="index.html" class="text-sm">Back</a>
+			</header>
+
+			<main class="bg-white/80 dark:bg-white/5 p-8 rounded-2xl shadow-md card">
+				<h2 id="pkg-title" class="font-heading text-2xl text-center text-primary mb-4">Package</h2>
+				<p class="text-center text-sm text-black/70 dark:text-white/70 mb-6">Write instructions below for how you'd like the surprise setup to be arranged. Account details will be attached automatically after login.</p>
+
+				<form id="send-form" class="space-y-4">
+					<input type="hidden" name="package_name" id="package_name">
+					<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+						<input name="event_date" placeholder="Event date (optional)" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" />
+						<input name="location" placeholder="Location / Address (optional)" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" id="location" />
+					</div>
+
+					<label class="block text-sm font-medium">Message</label>
+					<textarea name="details" id="details" rows="6" required class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" placeholder="Describe colors, decor, access instructions, timing, or any other notes..."></textarea>
+
+					<div class="flex justify-end items-center gap-3">
+						<button type="submit" class="px-4 py-2 rounded-full bg-primary text-white">Send Message</button>
+					</div>
+
+					<div id="form-status" class="text-sm text-center mt-2"></div>
+				</form>
+			</main>
+		</div>
+
+		<script src="https://kit.fontawesome.com/9603c04a31.js" crossorigin="anonymous"></script>
+		<script>
+			// Read package from query string and populate title
+			const params = new URLSearchParams(window.location.search);
+			const pkg = params.get('package') || 'Selected Package';
+			document.getElementById('pkg-title').textContent = pkg;
+			document.getElementById('package_name').value = pkg;
+
+			document.getElementById('send-form').addEventListener('submit', async (e) => {
+				e.preventDefault();
+				const status = document.getElementById('form-status');
+				status.textContent = 'Sending...';
+				const data = new FormData(e.target);
+
+				try {
+					const res = await fetch('save_message.php', { method: 'POST', body: data });
+					const json = await res.json();
+					if (json.success) {
+						status.textContent = 'Message sent — we will follow up shortly.';
+						e.target.reset();
+					} else {
+						status.textContent = 'Error: ' + (json.error || 'Unable to send message.');
+					}
+				} catch (err) {
+					status.textContent = 'Network error. Please try again.';
+				}
+			});
+		</script>
+	</body>
+</html>
