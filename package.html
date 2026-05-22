@@ -25,7 +25,7 @@
 					<i class="fa-solid fa-gift text-primary" style="scale:1.2"></i>
 					<h1 class="font-heading text-xl">Fancy Surprise Planner</h1>
 				</div>
-				<a href="index.html" class="text-sm">Back</a>
+				<a href="logged_in.html" class="text-sm">Back</a>
 			</header>
 
 			<main class="bg-white/80 dark:bg-white/5 p-8 rounded-2xl shadow-md card">
@@ -35,12 +35,12 @@
 				<form id="send-form" class="space-y-4">
 					<input type="hidden" name="package_name" id="package_name">
 					<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-						<input name="event_date" placeholder="Event date (optional)" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" />
-						<input name="location" placeholder="Location / Address (optional)" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" id="location" />
+						<input name="event_date" placeholder="Event date" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" required />
+						<input name="location" placeholder="Location / Address" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" id="location" required />
 					</div>
 
 					<label class="block text-sm font-medium">Message</label>
-					<textarea name="details" id="details" rows="6" required class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" placeholder="Describe colors, decor, access instructions, timing, or any other notes..."></textarea>
+					<textarea name="details" id="details" rows="6" required class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" placeholder="Describe colors, decor, access instructions, timing, or any other notes..." required></textarea>
 
 					<div class="flex justify-end items-center gap-3">
 						<button type="submit" class="px-4 py-2 rounded-full bg-primary text-white">Send Message</button>
@@ -55,7 +55,7 @@
 		<script>
 			// Read package from query string and populate title
 			const params = new URLSearchParams(window.location.search);
-			const pkg = params.get('package') || 'Selected Package';
+			const pkg = params.get('name') || 'Selected Package';
 			document.getElementById('pkg-title').textContent = pkg;
 			document.getElementById('package_name').value = pkg;
 
