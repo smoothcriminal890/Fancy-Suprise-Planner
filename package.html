@@ -71,6 +71,8 @@
 					if (json.success) {
 						status.textContent = 'Message sent — we will follow up shortly.';
 						e.target.reset();
+						window.setTimeout(() => status.textContent = '', 5000);
+						window.location.href = 'logged_in.html';
 					} else {
 						status.textContent = 'Error: ' + (json.error || 'Unable to send message.');
 					}
