@@ -136,9 +136,13 @@ a.login:hover, a.sign_up:hover {
           </div>
         </button>
         <div id="user-menu-dropdown" class="user-menu-dropdown bg-background-light dark:bg-background-dark">
-          <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-primary/10 transition-colors text-red-500 hover:text-red-600 font-semibold rounded-b">
+          <button onclick="logout()" class="w-full text-left px-4 py-2 hover:bg-primary/10 transition-colors text-red-500 hover:text-red-600 font-semibold">
             <span class="material-symbols-outlined mr-2" style="font-size: 18px; vertical-align: middle;">logout</span>
             Log Out
+          </button>
+          <button onclick="window.location.href = 'delete_account.php'" class="w-full text-left px-4 py-2 hover:bg-primary/10 transition-colors text-red-500 hover:text-red-600 font-semibold rounded-b">
+            <span class="material-symbols-outlined mr-2" style="font-size: 18px; vertical-align: middle;">delete</span>
+            Delete Account
           </button>
         </div>
       </div>
@@ -166,6 +170,10 @@ a.login:hover, a.sign_up:hover {
       <button onclick="logout()" class="text-left text-red-500 hover:text-red-600 font-semibold transition-colors">
         <span class="material-symbols-outlined mr-2" style="font-size: 18px; vertical-align: middle;">logout</span>
         Log Out
+      </button>
+      <button onclick="window.location.href = 'delete_account.php'" class="text-left text-red-500 hover:text-red-600 font-semibold transition-colors">
+        <span class="material-symbols-outlined mr-2" style="font-size: 18px; vertical-align: middle;">delete</span>
+        Delete Account
       </button>
       <div class="flex items-center gap-3">
         <!-- TikTok -->
