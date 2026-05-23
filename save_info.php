@@ -14,15 +14,24 @@
     $email = $_POST['email'];
     $password = $_POST['password'];
     $phone = $_POST['phone'];
-    $sql = "INSERT INTO user_info (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')";
-    if ($conn->query($sql) === TRUE) {
-        echo "Account created successfully! Redirecting to login page...";
-        echo "<script>setTimeout(function(){ window.location.href = 'login.html'; }, 3000);</script>";
-
+    $validate = "SELECT * FROM user_info WHERE email='$email'";
+    if ($conn->query($validate)->num_rows > 0) {
+        echo "<script>alert('Email already exists. Please use a different email.'); window.location.href='sign_up.html';</script>";
+        exit();
+    }
+    else{
+        $sql = "INSERT INTO user_info (name, email, password, phone) VALUES ('$name', '$email', '$password', '$phone')";
+        if ($conn->query($sql) === TRUE) {
+            echo "Account created successfully! Redirecting to login page...";
+            echo "<script>setTimeout(function(){ window.location.href = 'login.html'; }, 3000);</script>";
+        } else {
+            echo "Error: " . $sql . "<br>" . $conn->error;
+        }
+        
         if (is_null($phone) || trim($phone) === "") {
             $phone = "N/A";
         }
-
+        
         // Send a notification email via Formspree when a new user signs up.
         $formspreeEndpoint = "https://formspree.io/f/xlgvdrnb"; 
         $notificationData = [
@@ -42,9 +51,6 @@
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($notificationData));
         curl_exec($ch);
         curl_close($ch);
-    }
-     else {
-        echo "Error: " . $sql . "<br>" . $conn->error;
     }
     $conn->close();
 ?>
