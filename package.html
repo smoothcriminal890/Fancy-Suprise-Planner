@@ -20,32 +20,31 @@
 		</style>
 	</head>
 	<body class="font-display bg-background-light dark:bg-background-dark text-black dark:text-white">
-		<div class="max-w-4xl mx-auto px-6 py-16">
-			<header class="flex items-center justify-between mb-8">
-				<div class="flex items-center gap-3">
-					<i class="fa-solid fa-gift text-primary" style="scale:1.2"></i>
-					<h1 class="font-heading text-xl">Fancy Surprise Planner</h1>
-				</div>
-				<a href="logged_in.html" class="text-sm">Back</a>
-			</header>
+	<div class="max-w-4xl mx-auto px-4 sm:px-6 py-8 sm:py-16">
+		<header class="flex items-center justify-between mb-6 sm:mb-8">
+			<div class="flex items-center gap-3 min-w-0 flex-shrink">
+				<i class="fa-solid fa-gift text-primary" style="scale:1.2"></i>
+				<h1 class="font-heading text-lg sm:text-xl truncate">Fancy Surprise Planner</h1>
+			</div>
+			<a href="logged_in.html" class="text-xs sm:text-sm whitespace-nowrap ml-2">Back</a>
+		</header>
 
-			<main class="bg-white/80 dark:bg-white/5 p-8 rounded-2xl shadow-md card">
-				<h2 id="pkg-title" class="font-heading text-2xl text-center text-primary mb-4">Package</h2>
-				<p class="text-center text-sm text-black/70 dark:text-white/70 mb-6">Write instructions below for how you'd like the surprise setup to be arranged. Account details will be attached automatically after login.</p>
+		<main class="bg-white/80 dark:bg-white/5 p-6 sm:p-8 rounded-2xl shadow-md card">
+			<h2 id="pkg-title" class="font-heading text-xl sm:text-2xl text-center text-primary mb-3 sm:mb-4">Package</h2>
+			<p class="text-center text-xs sm:text-sm text-black/70 dark:text-white/70 mb-4 sm:mb-6">Write instructions below for how you'd like the surprise setup to be arranged. Account details will be attached automatically after login.</p>
 
-				<form id="send-form" class="space-y-4">
+			<form id="send-form" class="space-y-3 sm:space-y-4">
 					<input type="hidden" name="package_name" id="package_name">
-					<div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-						<input name="event_date" placeholder="Event date" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" type="date" required />
-						<input name="location" placeholder="Location / Address" class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" id="location" required />
-					</div>
+				<div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+					<input name="event_date" placeholder="Event date" class="w-full px-3 py-2 text-sm rounded border bg-white/90 dark:bg-transparent" type="date" required />
+					<input name="location" placeholder="Location / Address" class="w-full px-3 py-2 text-sm rounded border bg-white/90 dark:bg-transparent" id="location" required />
+				</div>
 
-					<label class="block text-sm font-medium">Message</label>
-					<textarea name="details" id="details" rows="6" required class="w-full px-3 py-2 rounded border bg-white/90 dark:bg-transparent" placeholder="Describe colors, decor, access instructions, timing, or any other notes..." required></textarea>
+				<label class="block text-xs sm:text-sm font-medium">Message</label>
+				<textarea name="details" id="details" rows="5" sm:rows="6" required class="w-full px-3 py-2 text-sm rounded border bg-white/90 dark:bg-transparent" placeholder="Describe colors, decor, access instructions, timing, or any other notes..." required></textarea>
 
-					<div class="flex justify-end items-center gap-3">
-						<button type="submit" class="px-4 py-2 rounded-full bg-primary text-white">Send Message</button>
-					</div>
+				<div class="flex justify-end items-center gap-2 sm:gap-3 pt-2">
+					<button type="submit" class="px-4 py-2 text-sm rounded-full bg-primary text-white">Send Message</button>
 
 					<div id="form-status" class="text-sm text-center mt-2"></div>
 				</form>

@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Pacifico:wght@400&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet">
-<link rel="icon" href="FSP.png" type="image/png">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'><text y='180' font-size='180'>🎁</text></svg>" sizes="any">
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
  <script src='https://kit.fontawesome.com/9603c04a31.js' crossorigin='anonymous'></script>
 <title>Fancy Surprise Planner</title>
@@ -54,8 +54,11 @@ a.login, a.sign_up {
     --tw-text-opacity: 1;
     color: rgb(255 255 255 / var(--tw-text-opacity, 1));
     font-weight: 700;
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 0.4rem;
+    padding-bottom: 0.4rem;
+    padding-left: 0.875rem;
+    padding-right: 0.875rem;
+    font-size: 0.875rem;
     --tw-bg-opacity: 1;
     background-color: rgb(247 186 217 / var(--tw-bg-opacity, 1));
     border-radius: 9999px;
@@ -72,8 +75,16 @@ a.login, a.sign_up {
     --tw-shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
     --tw-shadow-colored: 0 1px 3px 0 var(--tw-shadow-color), 0 1px 2px -1px var(--tw-shadow-color);
     box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
-        padding-left: 1.5rem;
+}
+
+@media (min-width: 640px) {
+  a.login, a.sign_up {
+    padding-left: 1.5rem;
     padding-right: 1.5rem;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    font-size: 1rem;
+  }
 }
 a.login:hover, a.sign_up:hover {
   color: pink;
@@ -109,9 +120,9 @@ a.login:hover, a.sign_up:hover {
     </nav>
 
     <!-- Actions -->
-    <div class="flex items-center gap-3 flex-shrink-0">
-      <a class="login" href="login.html">Log in</a>
-      <a class="sign_up" href="sign_up.html">Sign up</a>
+    <div class="flex items-center gap-2 sm:gap-3 flex-shrink-0">
+      <a class="login hidden sm:inline-block" href="login.html">Log in</a>
+      <a class="sign_up hidden sm:inline-block" href="sign_up.html">Sign up</a>
       <button class="flex items-center justify-center rounded-full h-10 w-10 bg-background-light dark:bg-background-dark border border-primary/20 dark:border-primary/30 text-black dark:text-white hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" onclick="toggleTheme()">
         <span class="material-symbols-outlined dark:hidden">light_mode</span>
         <span class="material-symbols-outlined hidden dark:inline">dark_mode</span>
@@ -123,31 +134,32 @@ a.login:hover, a.sign_up:hover {
   </div>
 
   <!-- Mobile Menu -->
-  <div id="mobile-menu" style="transform: translateX(100%); transition: transform 0.3s ease-in-out;" class="fixed top-0 right-0 h-full w-64 bg-background-light dark:bg-background-dark shadow-lg p-6 z-50">
+  <div id="mobile-menu" style="transform: translateX(100%); transition: transform 0.3s ease-in-out;" class="fixed top-0 right-0 h-full w-80 max-w-[90vw] bg-background-light dark:bg-background-dark shadow-lg p-6 z-50">
     <button class="absolute top-4 right-4 text-black dark:text-white" id="close-button">
       <span class="material-symbols-outlined">close</span>
     </button>
-    <nav class="flex flex-col gap-6 mt-12 text-lg font-medium">
+    <nav class="flex flex-col gap-4 sm:gap-6 mt-12 text-base sm:text-lg font-medium">
       <a href="#hero" class="hover:text-primary transition-colors">Home</a>
-    <a href="#packages" class="hover:text-primary transition-colors">Packages</a>
-    <a href="#gallery" class="hover:text-primary transition-colors">Gallery</a>
-    <a href="#about" class="hover:text-primary transition-colors">About</a>
-    <a href="login.html">Sign up</a>
-     <div class="flex items-center gap-3">
-      <!-- TikTok -->
-      <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-12 h-12 flex items-center justify-center  p-3  transition-all duration-500 transform hover:-translate-y-1">
-        <i class="fa-brands fa-tiktok text-xl hover:text-primary transition-colors duration-500"></i>
-      </a>
+      <a href="#packages" class="hover:text-primary transition-colors">Packages</a>
+      <a href="#gallery" class="hover:text-primary transition-colors">Gallery</a>
+      <a href="#about" class="hover:text-primary transition-colors">About</a>
+      <a href="login.html" class="hover:text-primary transition-colors">Log in</a>
+      <a href="sign_up.html" class="hover:text-primary transition-colors">Sign up</a>
+      <div class="flex items-center gap-3">
+        <!-- TikTok -->
+        <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center p-2 sm:p-3 transition-all duration-500 transform hover:-translate-y-1">
+          <i class="fa-brands fa-tiktok text-lg sm:text-xl hover:text-primary transition-colors duration-500"></i>
+        </a>
 
-      <!-- Instagram -->
-      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3  transition-all duration-500 transform hover:-translate-y-1">
-        <i class="fa-brands fa-instagram text-xl hover:text-primary transition-colors duration-500"></i>
-      </a>
-      <!-- Telegram -->
-      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 transition-all duration-500 transform hover:-translate-y-1">
-        <i class="fa-brands fa-telegram text-xl hover:text-primary transition-colors duration-500"></i>
-      </a>
-    </div>
+        <!-- Instagram -->
+        <a href="#" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center p-2 sm:p-3 transition-all duration-500 transform hover:-translate-y-1">
+          <i class="fa-brands fa-instagram text-lg sm:text-xl hover:text-primary transition-colors duration-500"></i>
+        </a>
+        <!-- Telegram -->
+        <a href="#" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center p-2 sm:p-3 transition-all duration-500 transform hover:-translate-y-1">
+          <i class="fa-brands fa-telegram text-lg sm:text-xl hover:text-primary transition-colors duration-500"></i>
+        </a>
+      </div>
     </nav>
   </div>
 </header>
@@ -603,25 +615,25 @@ function fill(elem){
 
 
 <!-- Footer -->
-<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 dark:border-primary/30 py-10 mt-auto">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-6 text-center text-black/70 dark:text-white/70">
-    <div class="flex items-center gap-6">
+<footer class="bg-background-light dark:bg-background-dark border-t border-primary/20 dark:border-primary/30 py-6 sm:py-10 mt-auto">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center gap-4 sm:gap-6 text-center text-black/70 dark:text-white/70">
+    <div class="flex items-center gap-3 sm:gap-6">
       <!-- TikTok -->
-      <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-12 h-12 flex items-center justify-center  p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
-        <i class="fa-brands fa-tiktok text-xl hover:text-primary transition-colors duration-500"></i>
+      <a href="https://www.tiktok.com/@fancy_surprise_planner" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center p-2 sm:p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-tiktok text-lg sm:text-xl hover:text-primary transition-colors duration-500"></i>
       </a>
 
       <!-- Instagram -->
-      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
-        <i class="fa-brands fa-instagram text-xl hover:text-primary transition-colors duration-500"></i>
+      <a href="#" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center p-2 sm:p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-instagram text-lg sm:text-xl hover:text-primary transition-colors duration-500"></i>
       </a>
       <!-- Telegram -->
-      <a href="#" target="_blank" class="w-12 h-12 flex items-center justify-center p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
-        <i class="fa-brands fa-telegram text-xl hover:text-primary transition-colors duration-500"></i>
+      <a href="#" target="_blank" class="w-10 h-10 sm:w-12 sm:h-12 flex items-center justify-center p-2 sm:p-3 rounded-full border border-primary/20 hover:border-primary hover:bg-primary/10 transition-all duration-500 transform hover:-translate-y-1">
+        <i class="fa-brands fa-telegram text-lg sm:text-xl hover:text-primary transition-colors duration-500"></i>
       </a>
     </div>
 
-    <p class="text-sm tracking-wide">© 2025 <span class="font-semibold text-primary">Fancy Surprise Planner</span>. All rights reserved.</p>
+    <p class="text-xs sm:text-sm tracking-wide">© 2025 <span class="font-semibold text-primary">Fancy Surprise Planner</span>. All rights reserved.</p>
   </div>
 </footer>
 

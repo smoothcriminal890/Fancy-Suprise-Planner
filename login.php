@@ -19,7 +19,11 @@ session_start();
         $row = $result->fetch_assoc();
         $_SESSION['name'] = $row['name'];
         $_SESSION['email'] = $row['email'];
-        echo "<script>window.location.href='logged_in.html';</script>";
+        echo "<script>
+            localStorage.setItem('userName', '" . addslashes($row['name']) . "');
+            localStorage.setItem('userEmail', '" . addslashes($row['email']) . "');
+            window.location.href='logged_in.html';
+        </script>";
     } 
     else {
         echo "<script>alert('Invalid email or password. Please try again.'); window.location.href='login.html';</script>";
