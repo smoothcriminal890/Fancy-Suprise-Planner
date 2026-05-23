@@ -33,7 +33,7 @@
         }
         
         // Send a notification email via Formspree when a new user signs up.
-        $formspreeEndpoint = "https://formspree.io/f/xlgvdrnb"; 
+        $formspreeEndpoint = "https://formspree.io/f/xnjrzzgo"; 
         $notificationData = [
             'name' => $name,
             '_replyto' => $email,

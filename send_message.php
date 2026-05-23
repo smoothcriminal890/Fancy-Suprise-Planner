@@ -47,7 +47,7 @@ $ok = $stmt->execute();
 
 if ($ok) {
     // Send notification to Formspree (optional)
-    $formspreeEndpoint = "https://formspree.io/f/xlgvdrnb"; // replace with your own if needed
+    $formspreeEndpoint = "https://formspree.io/f/xnjrzzgo"; // replace with your own if needed
     $payload = [
         'package' => $package_name,
         'name' => $name,
