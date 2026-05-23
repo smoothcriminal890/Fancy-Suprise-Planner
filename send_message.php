@@ -1,4 +1,5 @@
 <?php
+session_start();
 header('Content-Type: application/json; charset=utf-8');
 
 // Basic validation and DB save for package messages
@@ -14,9 +15,9 @@ if ($conn->connect_error) {
 }
 
 $package_name = isset($_POST['package_name']) ? trim($_POST['package_name']) : '';
-$name = isset($_POST['name']) ? trim($_POST['name']) : '';
-$phone = isset($_POST['phone']) ? trim($_POST['phone']) : '';
-$email = isset($_POST['email']) ? trim($_POST['email']) : '';
+$name = isset($_SESSION['name']) ? trim($_SESSION['name']) : '';
+$phone = isset($_SESSION['phone']) ? trim($_SESSION['phone']) : '';
+$email = isset($_SESSION['email']) ? trim($_SESSION['email']) : '';
 $event_date = isset($_POST['event_date']) ? trim($_POST['event_date']) : '';
 $location = isset($_POST['location']) ? trim($_POST['location']) : '';
 $details = isset($_POST['details']) ? trim($_POST['details']) : '';
