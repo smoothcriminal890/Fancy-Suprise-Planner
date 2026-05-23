@@ -50,7 +50,7 @@ if ($ok) {
     $payload = [
         'package' => $package_name,
         'name' => $name,
-        '_replyto' => $email ?: 'no-reply@example.com',
+        '_replyto' => $email,
         '_subject' => "New package message: $package_name",
         'message' => "Name: $name\nPhone: $phone\nEmail: $email\nDate: $event_date\nLocation: $location\n\nDetails:\n$details"
     ];
