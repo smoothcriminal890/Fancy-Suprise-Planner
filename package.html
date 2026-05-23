@@ -66,7 +66,7 @@
 				const data = new FormData(e.target);
 
 				try {
-					const res = await fetch('save_message.php', { method: 'POST', body: data });
+					const res = await fetch('send_message.php', { method: 'POST', body: data });
 					const json = await res.json();
 					if (json.success) {
 						status.textContent = 'Message sent — we will follow up shortly.';
