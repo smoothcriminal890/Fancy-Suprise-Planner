@@ -3,10 +3,10 @@ session_start();
 header('Content-Type: application/json; charset=utf-8');
 
 // Basic validation and DB save for package messages
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "user_info";
+$servername = "sql307.infinityfree.com";
+$username = "if0_42017432";
+$password = "1980Nettan";
+$dbname = "if0_42017432_user_data";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 if ($conn->connect_error) {
