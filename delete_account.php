@@ -18,5 +18,5 @@ session_start();
         session_destroy();
         echo "<script>alert('Account deleted successfully.'); window.location.href='index.html';</script>";
     } else {
-        echo "<script>alert('Error deleting account: " . $conn->error . ""); window.location.href='logged_in.html';</script>";
+        echo "<script>alert('Error deleting account: " . $conn->error . "'); window.location.href='logged_in.html';</script>";
     }
