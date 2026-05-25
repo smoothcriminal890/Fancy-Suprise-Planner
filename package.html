@@ -45,9 +45,10 @@
 
 				<div class="flex justify-end items-center gap-2 sm:gap-3 pt-2">
 					<button type="submit" class="px-4 py-2 text-sm rounded-full bg-primary text-white">Send Message</button>
+				</div>
 
-					<div id="form-status" class="text-sm text-center mt-2"></div>
-				</form>
+				<div id="form-status" class="text-sm text-center mt-2"></div>
+			</form>
 			</main>
 		</div>
 
@@ -71,8 +72,21 @@
 					if (json.success) {
 						status.textContent = 'Message sent — we will follow up shortly.';
 						e.target.reset();
-						window.setTimeout(() => status.textContent = '', 5000);
-						window.location.href = 'logged_in.html';
+						
+						// Countdown timer before redirect
+						let countdown = 5;
+						status.textContent = `Message sent! Redirecting in ${countdown}...`;
+						countdown--;
+						
+						const timer = setInterval(() => {
+							if (countdown > 0) {
+								status.textContent = `Message sent! Redirecting in ${countdown}...`;
+								countdown--;
+							} else {
+								clearInterval(timer);
+								window.location.href = 'logged_in.html';
+							}
+						}, 1000); 
 					} else {
 						status.textContent = 'Error: ' + (json.error || 'Unable to send message.');
 					}
