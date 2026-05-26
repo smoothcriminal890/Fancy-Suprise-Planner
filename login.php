@@ -1,10 +1,10 @@
 <?php
 session_start();
     // Database connection parameters
-    $servername = "sql307.infinityfree.com";
-    $username = "if0_42017432";
-    $password = "1980Nettan";
-    $dbname = "if0_42017432_user_data";
+    $servername = "localhost";
+    $username = "root";
+    $password = "";
+    $dbname = "user_info";
 // Create connection
     $conn = new mysqli($servername, $username, $password, $dbname);
     if ($conn->connect_error) {
