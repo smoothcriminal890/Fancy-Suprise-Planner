@@ -1,6 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" class="dark">
+<html lang="en">
 <head>
+<script>
+  const savedTheme = localStorage.getItem('theme') || 'light';
+  if (savedTheme === 'dark') {
+    document.documentElement.classList.add('dark');
+  }
+</script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;900&family=Pacifico:wght@400&display=swap" rel="stylesheet">
@@ -102,12 +108,14 @@ html {
           <label for="password" class="block text-xs sm:text-sm font-medium leading-6 mb-1 sm:mb-2">Password</label>
           <input type="password" id="password" name="password" placeholder="Create a Password"
             class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-2 sm:py-3 px-3 sm:px-4 text-sm sm:text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
-        </div>
+          <button type="button" class="absolute right-3 top-[calc(50%-0.5em)] text-sm text-primary hover:underline focus:outline-none" onclick="togglePasswordVisibility('password')"></button>
+          </div>
 
         <div>
           <label for="confirm-password" class="block text-xs sm:text-sm font-medium leading-6 mb-1 sm:mb-2">Confirm Password</label>
           <input type="password" id="confirm-password" name="confirm-password" placeholder="Confirm Password"
             class="w-full rounded-xl border border-primary/30 bg-background-light dark:bg-background-dark py-2 sm:py-3 px-3 sm:px-4 text-sm sm:text-base text-black dark:text-white shadow-sm focus:ring-2 focus:ring-primary focus:border-transparent transition-all" required>
+          <button type="button" class="absolute right-3 top-[calc(50%-0.5em)] text-sm text-primary hover:underline focus:outline-none" onclick="togglePasswordVisibility('confirm-password')"></button>
         </div>
 
         <div>
@@ -144,9 +152,16 @@ html {
 </footer>
 
 <script>
-document.documentElement.classList.toggle('dark');
 function toggleTheme() {
-  document.documentElement.classList.toggle('dark');
+  const html = document.documentElement;
+  const isDark = html.classList.contains('dark');
+  const newTheme = isDark ? 'light' : 'dark';
+  if (newTheme === 'dark') {
+    html.classList.add('dark');
+  } else {
+    html.classList.remove('dark');
+  }
+  localStorage.setItem('theme', newTheme);
 }
 </script>
 <script>
@@ -162,4 +177,5 @@ document.querySelector('form').addEventListener('submit', function(e){
 </script>
 </div>
 </body>
+<script src="theme.js"></script>
 </html>
